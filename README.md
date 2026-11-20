@@ -1,42 +1,47 @@
-# Neon Vice — GTA-style Cover Maker
+# Neon Vice — gta6-cover-art-01
 
-[![make.fun · gta6-cover-art-01](https://make.fun/badge/gta6-cover-art-01.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
-[![rank](https://make.fun/badge/gta6-cover-art-01/Endodo713/gta6-cover-art-01/rank.svg)](https://make.fun/bounty/gta6-cover-art-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
-[![reward](https://make.fun/badge/gta6-cover-art-01/Endodo713/gta6-cover-art-01/reward.svg)](https://make.fun/bounty/gta6-cover-art-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01)
+Offline GTA 6-style cover art maker. Turn your photo and a caption into a multi-panel Vice City poster, exported as a PNG in the common post sizes: 1080×1080, 1080×1350, and 1920×1080.
 
-An offline web app that turns your photo and a caption into a
-sunset-neon poster cover: multi-panel layouts, bold condensed
-lettering, and a magenta–orange–cyan Vice City grade, exported as a
-PNG in 1080×1080, 1080×1350, or 1920×1080.
+No Rockstar logo, artwork, or font. Every font, gradient, and panel treatment is original code. Photos never leave your machine — everything renders locally in the browser.
 
-## How it works (3 steps)
+[![make.fun badge](https://make.fun/badge/gta6-cover-art-01.svg)](https://make.fun/competitions/gta6-cover-art-01)
+[![make.fun rank](https://make.fun/badge/gta6-cover-art-01/Endodo713/gta6-cover-art-01/rank.svg)](https://make.fun/competitions/gta6-cover-art-01)
+[![make.fun reward](https://make.fun/badge/gta6-cover-art-01/Endodo713/gta6-cover-art-01/reward.svg)](https://make.fun/competitions/gta6-cover-art-01)
 
-1. **Photos** — add up to 3 of your own photos (or load the free
-   samples). Photos are read in the browser and never leave the
-   device. Tap a photo on the cover to pick it, drag it to move it,
-   scroll or use the slider to zoom it.
-2. **Layout** — pick Sunset Stack, Vice Grid, or Boulevard Strip.
-   One photo fills several panels with different framings; several
-   photos fill one panel each.
-3. **Caption** — type the caption, kicker, size, font, colour, and
-   position, then export a PNG in the size you need.
+## What it does
 
-## Originality
+- Load any photo from your machine (PNG/JPG)
+- Type a caption (bold capitals, one line)
+- Pick a layout: Sunset Stack (default), Vice Grid 2×2, or Boulevard Strip
+- Pick a sunset/neon grade: Sunset, Neon Vice, or Midnight Vice
+- Live preview, then export three PNG sizes at once
 
-All art, lettering, and fonts are original: the sunset grade, panel
-geometry, and caption treatment are drawn in code; the fonts are
-Big Shoulders, Outfit, and Instrument Sans under the SIL Open Font
-License 1.1 (see `app/fonts/`). No Rockstar logo, artwork, or font
-is used anywhere.
+## How to run
 
-## Run it offline
+```bash
+node serve.ts
+# open http://localhost:8080
+```
 
-`node serve.ts` → open the printed address. No network is used:
-every file lives under `app/`.
+Or build the entry:
 
-## Design
+```bash
+MAKEFUN_OUTPUT_DIR=out node main.ts
+```
 
-See `DESIGN.md` (movement: "Neon Vice") and `CONCEPTS.md` (the
-3-concept A/B that picked the Sunset Stack layout).
+## Files
 
-<sub>Entered on [make.fun](https://make.fun/?ref=tnhwa041&utm_source=github&utm_medium=readme&utm_campaign=gta6-cover-art-01) · AI agents build software for cash rewards</sub>
+- `app/index.html` — editor + preview page (offline, no network)
+- `app/style.css` — dark Vice City UI
+- `app/src/cover.js` — multi-panel renderer (panels, grade, caption, seal, role labels)
+- `app/src/main.js` — photo load, controls, live preview, 3-size export
+- `app/src/shots.js` — `?shot=cover` / `?shot=editor` screenshot scenes
+- `app/fonts/` — OFL-licensed display and text fonts
+- `app/samples/` — free-to-use sample photos
+- `main.ts` — Node 22 entry: copies `app/` + `screenshots/` to `/output`, writes `dossier.json` via `vendor/makefun-app.ts`
+- `vendor/makefun-app.ts` — kit's dossier library (unchanged)
+- `screenshots/` — 3 renders of the app for judging
+
+## License
+
+MIT — see LICENSE.
