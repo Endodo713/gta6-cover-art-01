@@ -1,12 +1,8 @@
-Neon Vice / gta6-cover-art-01 entry — session lines written 2026-11-20.
-This OFL file covers the font under app/fonts/Outfit-OFL.txt, shipped as original entry
-content (SIL Open Font License 1.1). No Rockstar font is used.
-
-Copyright 2021 The Outfit Project Authors (SIL Open Font License 1.1
+Copyright 2021 The Outfit Project Authors (https://github.com/Outfitio/Outfit-Fonts)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:
-SIL Open Font License 1.1
+https://openfontlicense.org
 
 
 -----------------------------------------------------------

@@ -1,12 +1,8 @@
-Neon Vice / gta6-cover-art-01 entry — session lines written 2026-11-20.
-This OFL file covers the font under app/fonts/BigShoulders-OFL.txt, shipped as original entry
-content (SIL Open Font License 1.1). No Rockstar font is used.
-
-Copyright 2019 The Big Shoulders Project Authors (SIL Open Font License 1.1
+Copyright 2019 The Big Shoulders Project Authors (https://github.com/xotypeco/big_shoulders)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:
-SIL Open Font License 1.1
+https://openfontlicense.org
 
 
 -----------------------------------------------------------
