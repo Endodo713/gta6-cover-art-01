@@ -1,63 +1,25 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Neon Vice — GTA 6 Cover Art</title>
-  <meta name="description" content="Offline GTA 6-style cover art maker: photo + caption → multi-panel poster, exported as PNG.">
-  <link rel="stylesheet" href="./style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Vice — GTA VI Cover Maker</title>
+<link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <div class="app">
-    <aside class="editor">
-      <h1>Neon Vice</h1>
-      <p class="tagline">GTA 6-style cover art — offline. Your photo, your caption.</p>
-
-      <label class="field">
-        <span class="field-label">Photo</span>
-        <input type="file" id="photo" accept="image/*">
-        <span class="field-hint">PNG, JPG — stays on this machine</span>
-      </label>
-
-      <label class="field">
-        <span class="field-label">Caption</span>
-        <input type="text" id="caption" maxlength="40" value="SUNSET HEIST">
-        <span class="field-hint">Bold capitals, one line</span>
-      </label>
-
-      <label class="field">
-        <span class="field-label">Layout</span>
-        <select id="layout">
-          <option value="sunset-stack">Sunset Stack (default)</option>
-          <option value="vice-grid">Vice Grid 2×2</option>
-          <option value="boulevard-strip">Boulevard Strip</option>
-        </select>
-      </label>
-
-      <label class="field">
-        <span class="field-label">Grade</span>
-        <select id="grade">
-          <option value="sunset">Sunset (magenta → orange)</option>
-          <option value="neon">Neon Vice (cyan → magenta)</option>
-          <option value="midnight">Midnight Vice (deep violet)</option>
-        </select>
-      </label>
-
-      <div class="actions">
-        <button id="export" class="btn btn-primary">Export PNG</button>
-        <div class="sizes" id="sizes" aria-live="polite"></div>
-      </div>
-
-      <p class="note">All rendering happens locally. No photo leaves this machine. Fonts and art are original (OFL).</p>
-    </aside>
-
-    <section class="preview">
-      <div class="preview-frame" id="previewFrame">
-        <canvas id="cover" width="1080" height="1080" aria-label="Cover preview"></canvas>
-      </div>
-    </section>
-  </div>
-
-  <script type="module" src="./src/main.js"></script>
+<main class="app">
+  <section class="controls">
+    <h1>Neon Vice</h1>
+    <p>GTA VI-style multi-panel cover art. Sunset/neon grade, bold lettering, exported offline as PNG.</p>
+    <label>Photo <input id="photo" type="file" accept="image/*"></label>
+    <label>Caption <input id="caption" type="text" maxlength="60" value="Sunset Heist"></label>
+    <div class="actions">
+      <button id="export" type="button">Export PNG &nbsp;(1080×1080 · 1080×1350 · 1920×1080)</button>
+    </div>
+    <p id="status" role="status"></p>
+  </section>
+  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+</main>
+<script type="module" src="./src/main.js"></script>
 </body>
 </html>
