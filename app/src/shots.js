@@ -1,10 +1,18 @@
-// Fixed scenes for screenshots: ?shot=cover shows the exported cover alone;
-// ?shot=editor shows the editor with a sample photo loaded.
-// `photo` picks the sample (samples/<photo>.jpg) and `caption` the words.
-// window.__shotReady is set once painted so the harness can capture.
+// Fixed screenshot scenes for offline rendering against the local server.
+// ?shot=cover -> cover alone with sample photo in EVERY panel + masthead once.
+// ?shot=editor -> full editor page with a sample photo.
+// `photo` picks samples/<photo>.jpg ; `caption` sets the words.
+// window.__shotReady is set once painted.
 export async function runShot(shot, query, load) {
-  if (shot === 'cover') document.body.classList.add('shot-cover');
-  if (shot === 'editor') document.body.classList.add('shot-editor');
-  await load(`samples/${query.get('photo') ?? 'pier'}.jpg`, query.get('caption') ?? 'SUNSET HEIST');
-  requestAnimationFrame(() => requestAnimationFrame(() => { window.__shotReady = true; }));
+  const photo = query.get('photo') ?? 'pier';
+  const caption = query.get('caption') ?? 'Sunset Heist';
+
+  if (shot === 'cover') {
+    document.body.classList.add('shot-cover');
+  }
+
+  await load(`samples/${photo}.jpg`, caption);
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    window.__shotReady = true;
+  }));
 }
