@@ -1,7 +1,6 @@
-// Neon Vice — gta6-cover-art-01 entry (Node 22, standard library only).
-// Copies app/ and screenshots/ from beside this file to /output and writes
-// /output/dossier.json via the vendored make.fun library. Only stdlib, no network.
-
+// Neon Vice entry (Node 22, standard library only): copies app/ and screenshots/ to /output
+// and writes /output/dossier.json via the vendored make.fun library. Paths resolve via
+// import.meta.url (never process.cwd() as the primary lookup).
 import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -15,6 +14,9 @@ cpSync(join(here, 'app'), join(out, 'app'), { recursive: true });
 mkdirSync(join(out, 'screenshots'), { recursive: true });
 if (existsSync(join(here, 'screenshots'))) cpSync(join(here, 'screenshots'), join(out, 'screenshots'), { recursive: true });
 
+// Scorer caps (reference/gate.json): text_max_bytes shapes the bytes; the rest refuse an entry the scorer
+// would reject (more than 4 screenshots or one over 256 KiB; more than 993 files in app/ or 48 MiB of app
+// files in all, or a path under app/ over 1000 bytes).
 writeFileSync(
   join(out, 'dossier.json'),
   buildDossier(out, {
