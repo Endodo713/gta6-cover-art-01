@@ -1,67 +1,63 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Neon Vice — GTA-style Cover Maker</title>
-<link rel="stylesheet" href="./style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Neon Vice — GTA 6 Cover Art</title>
+  <meta name="description" content="Offline GTA 6-style cover art maker: photo + caption → multi-panel poster, exported as PNG.">
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<main class="app">
-  <section class="controls" aria-label="Cover editor">
-    <h1>Neon Vice</h1>
-    <p class="tagline">Your photo + a caption, made into a sunset-neon poster cover. Photos never leave this device — everything is drawn in your browser.</p>
+  <div class="app">
+    <aside class="editor">
+      <h1>Neon Vice</h1>
+      <p class="tagline">GTA 6-style cover art — offline. Your photo, your caption.</p>
 
-    <fieldset>
-      <legend>1 · Photos</legend>
-      <div class="tray" id="tray">
-        <button type="button" class="slot selected" data-slot="0"><span class="slot-label">Empty 1</span><span class="slot-hint">hero</span></button>
-        <button type="button" class="slot" data-slot="1"><span class="slot-label">Empty 2</span><span class="slot-hint">panel</span></button>
-        <button type="button" class="slot" data-slot="2"><span class="slot-label">Empty 3</span><span class="slot-hint">panel</span></button>
-      </div>
-      <label class="file-label">Add a photo to the selected slot
-        <input id="photo" type="file" accept="image/*">
+      <label class="field">
+        <span class="field-label">Photo</span>
+        <input type="file" id="photo" accept="image/*">
+        <span class="field-hint">PNG, JPG — stays on this machine</span>
       </label>
-      <button id="load-samples" type="button" class="ghost">Load the free sample photos</button>
-      <p class="hint">Tap a photo on the cover to pick it, then drag it to move it. Scroll on it to zoom.</p>
-    </fieldset>
 
-    <fieldset>
-      <legend>2 · Layout</legend>
-      <div class="layout-row" id="layout-row"></div>
-      <label>Zoom selected photo
-        <span class="range-row"><input id="zoom" type="range" min="100" max="300" value="100"><output id="zoom-value">100%</output></span>
+      <label class="field">
+        <span class="field-label">Caption</span>
+        <input type="text" id="caption" maxlength="40" value="SUNSET HEIST">
+        <span class="field-hint">Bold capitals, one line</span>
       </label>
-    </fieldset>
 
-    <fieldset>
-      <legend>3 · Caption</legend>
-      <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-      <label>Kicker <input id="kicker" type="text" maxlength="40" value="Neon Sunset 2026"></label>
-      <label>Caption size
-        <span class="range-row"><input id="caption-size" type="range" min="40" max="80" value="62"><output id="caption-size-value">62%</output></span>
-      </label>
-      <label>Caption font <select id="caption-font"></select></label>
-      <label>Caption position <select id="caption-position"></select></label>
-      <label>Caption colour <input id="caption-color" type="color" value="#ffffff"></label>
-    </fieldset>
-
-    <fieldset>
-      <legend>4 · Export PNG</legend>
-      <label>Size
-        <select id="export-size">
-          <option value="1080x1080">1080 × 1080 — square post</option>
-          <option value="1080x1350">1080 × 1350 — portrait post</option>
-          <option value="1920x1080">1920 × 1080 — wide post</option>
+      <label class="field">
+        <span class="field-label">Layout</span>
+        <select id="layout">
+          <option value="sunset-stack">Sunset Stack (default)</option>
+          <option value="vice-grid">Vice Grid 2×2</option>
+          <option value="boulevard-strip">Boulevard Strip</option>
         </select>
       </label>
-      <button id="export" type="button" class="primary">Export PNG</button>
-      <p id="status" role="status"></p>
-    </fieldset>
-    <p class="fine">All art, lettering and fonts are original. No Rockstar logo, artwork or font is used. Fonts: Big Shoulders, Outfit, Instrument Sans — SIL Open Font License 1.1.</p>
-  </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover preview — drag a photo to move it"></canvas>
-</main>
-<script type="module" src="./src/main.js"></script>
+
+      <label class="field">
+        <span class="field-label">Grade</span>
+        <select id="grade">
+          <option value="sunset">Sunset (magenta → orange)</option>
+          <option value="neon">Neon Vice (cyan → magenta)</option>
+          <option value="midnight">Midnight Vice (deep violet)</option>
+        </select>
+      </label>
+
+      <div class="actions">
+        <button id="export" class="btn btn-primary">Export PNG</button>
+        <div class="sizes" id="sizes" aria-live="polite"></div>
+      </div>
+
+      <p class="note">All rendering happens locally. No photo leaves this machine. Fonts and art are original (OFL).</p>
+    </aside>
+
+    <section class="preview">
+      <div class="preview-frame" id="previewFrame">
+        <canvas id="cover" width="1080" height="1080" aria-label="Cover preview"></canvas>
+      </div>
+    </section>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
 </body>
 </html>
